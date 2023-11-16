@@ -41,7 +41,7 @@ FILE *check_input(int argc, char *argv[])
 	fd = fopen(argv[1], "r");
 	if (fd == NULL)
 	{
-		vprintf(2, "Error: Can't open file %s\n", argv[1]);
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 	return (fd);
@@ -65,18 +65,18 @@ int main(int argc, char *argv[])
 	nlines = getline(&vglo.buffer, &size, fd);
 	while (nlines != -1)
 	{
-		lines[0] = strtoky(vglo.buffer, " \t\n");
+		lines[0] = _strtok(vglo.buffer, " \t\n");
 		if (lines[0] && lines[0][0] != '#')
 		{
 			f = get_opcodes(lines[0]);
 			if (!f)
 			{
-				dprintf(2, "L%u: ", vglo.cont);
-				dprintf(2, "unknown instruction %s\n", lines[0]);
+				fprintf(stderr, "L%u: ", vglo.cont);
+				fprintf(stderr, "unknown instruction %s\n", lines[0]);
 				free_vglo();
 				exit(EXIT_FAILURE);
 			}
-			vglo.arg = _strtoky(NULL, " \t\n");
+			vglo.arg = _strtok(NULL, " \t\n");
 			f(&vglo.head, vglo.cont);
 		}
 		nlines = getline(&vglo.buffer, &size, fd);

@@ -42,7 +42,7 @@ void _add(stack_t **doubly, unsigned int cline)
 		;
 	if (x < 2)
 	{
-		vprintf(2, "L%u: can't add, stack too short\n", cline);
+		fprintf(stderr, "L%u: can't add, stack too short\n", cline);
 		free_vglo();
 		exit(EXIT_FAILURE);
 	}
@@ -78,7 +78,7 @@ void _sub(stack_t **doubly, unsigned int cline)
 		;
 	if (x < 2)
 	{
-		vprintf(2, "L%u: can't sub, stack too short\n", cline);
+		fprintf(stderr, "L%u: can't sub, stack too short\n", cline);
 		free_vglo();
 		exit(EXIT_FAILURE);
 	}
