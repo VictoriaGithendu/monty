@@ -98,7 +98,7 @@ void _pchar(stack_t **doubly, unsigned int cline)
 {
 	if (doubly == NULL || *doubly == NULL)
 	{
-		ffprintf(stderr, "L%u: can't pchar, stack empty\n", cline);
+		fprintf(stderr, "L%u: can't pchar, stack empty\n", cline);
 		free_vglo();
 		exit(EXIT_FAILURE);
 	}
