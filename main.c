@@ -47,6 +47,17 @@ FILE *check_input(int argc, char *argv[])
 	return (fd);
 }
 /**
+ * getline - function that gets the line
+ * lineptr: pointer to a line
+ * n: pointer to an integer
+ * stream: stream
+ */
+ssize_t getline(char **lineptr, size_t *n, FILE *stream)
+{
+	if (lineptr == NULL || n == NULL || stream == NULL)
+		return (-1);
+}
+/**
  * main - Entry point
  * @argc: argument count
  * @argv: argument vector
@@ -62,7 +73,7 @@ int main(int argc, char *argv[])
 
 	fd = check_input(argc, argv);
 	start_vglo(fd);
-	nlines = (&vglo.buffer, &size, fd);
+	nlines = getline(&vglo.buffer, &size, fd);
 	while (nlines != -1)
 	{
 		lines[0] = _strtok(vglo.buffer, " \t\n");
@@ -79,7 +90,7 @@ int main(int argc, char *argv[])
 			vglo.arg = _strtok(NULL, " \t\n");
 			f(&vglo.head, vglo.cont);
 		}
-		nlines = (&vglo.buffer, &size, fd);
+		nlines = getline(&vglo.buffer, &size, fd);
 		vglo.cont++;
 	}
 	free_vglo();
